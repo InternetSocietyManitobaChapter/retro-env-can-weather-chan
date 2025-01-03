@@ -54,7 +54,7 @@ export function Conditions(props: ConditionsProp) {
       return CONDITIONS_WIND_SPEED_CALM;
 
     const speed = windSpeedValue ?? "";
-    const direction = windDirection.padStart(3);
+    const direction = (windDirection ?? "").padStart(3);
 
     // gust is a different format (omits units)
     if (windGust) return `${direction}  ${speed}G${windGust.value} `;
@@ -118,7 +118,7 @@ export function Conditions(props: ConditionsProp) {
       </div>
       {showPressure && (
         <div>
-          {"Pressure".padStart(11)} {pressureValue.toFixed(1)} {pressureUnits.padEnd(4)} {pressureTendency}
+          {"Pressure".padStart(11)} {pressureValue.toFixed(1).padStart(5)} {pressureUnits.padEnd(4)} {pressureTendency}
         </div>
       )}
     </div>

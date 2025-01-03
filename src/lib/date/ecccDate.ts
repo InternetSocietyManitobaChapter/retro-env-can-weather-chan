@@ -2,7 +2,14 @@ import { format } from "date-fns";
 import { getIsWinterSeason } from "./season";
 
 export function ecccDateStringToTSDate(date: string) {
-  return new Date(date.replace(" at", "").replace(",", ""));
+  // JS doesn't see atlantic and newfoundland standard/daylight time as a valid time for some reason
+  const fixedTimezone = date
+    .replace("ADT", "GMT-0300")
+    .replace("AST", "GMT-0400")
+    .replace("NDT", "GMT-0230")
+    .replace("NST", "GMT-0330");
+
+  return new Date(fixedTimezone.replace(" at", "").replace(",", ""));
 }
 
 export function getShorthandMonthNamesForSeason(stopAtCurrentMonth: boolean, date: Date = new Date()) {

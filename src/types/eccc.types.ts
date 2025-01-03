@@ -1,8 +1,8 @@
 export type ECCCConditions = {
-  condition: string;
+  condition: string | null;
   temperature: ECCCUnitString;
   pressure: ECCCPressure;
-  visibility: ECCCUnitString;
+  visibility: ECCCUnitString | null;
   relativeHumidity: ECCCUnitString;
   wind: ECCCWind;
 };
@@ -29,10 +29,15 @@ export type ECCCPressure = {
   tendency: string;
 } & ECCCUnitString;
 
+export type ECCCWindDirection = {
+  qaValue: number;
+  value: string;
+};
+
 export type ECCCWind = {
   speed: ECCCUnitString;
   gust: ECCCUnitString;
-  direction: string;
+  direction: ECCCWindDirection | null;
 };
 
 export type ECCCSunRiseSet = {
